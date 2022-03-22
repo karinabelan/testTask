@@ -39,11 +39,15 @@ namespace testTask
                     var phone = entity.GetAttributeValue<string>("kb_telephone");
 
                     Regex regex = new Regex(@"^[0-9]{10}$");
-
+                    if (phone == null)
+                    {
+                        throw new InvalidPluginExecutionException("input number");
+                    }
                     if (!regex.IsMatch(phone))
                     {
-                        throw new InvalidPluginExecutionException("False.");
+                        throw new InvalidPluginExecutionException("False");
                     }
+
                 }
 
                 catch (FaultException<OrganizationServiceFault> ex)
